@@ -1,5 +1,8 @@
 package movies.moviedemo.domain;
 
+import movies.moviedemo.enums.Genre;
+import movies.moviedemo.enums.Rating;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,35 +15,13 @@ public class Movie {
     private Boolean recommended;
     private String cast;
 
-//    private Character rating;
+    @Enumerated(EnumType.STRING)
+    private Rating rating;
+    private Genre genre;
+
 //    private Double score_average;
 
-    public Movie() {
-    }
-
-    public String getCast() {
-        return cast;
-    }
-
-    public void setCast(String cast) {
-        this.cast = cast;
-    }
-
-//    public Character getRating() {
-//        return rating;
-//    }
-//
-//    public void setRating(Character rating) {
-//        this.rating = rating;
-//    }
-//
-//    public Double getScore_average() {
-//        return score_average;
-//    }
-//
-//    public void setScore_average(Double score_average) {
-//        this.score_average = score_average;
-//    }
+    public Movie() { }
 
     public Long getId() {
         return id;
@@ -74,6 +55,30 @@ public class Movie {
         this.recommended = recommended;
     }
 
+    public String getCast() {
+        return cast;
+    }
+
+    public void setCast(String cast) {
+        this.cast = cast;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -81,9 +86,9 @@ public class Movie {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", recommended=" + recommended +
-                ", cast=" + cast +
-//                ", rating=" + rating +
-//                ", score_average=" + score_average +
+                ", cast='" + cast + '\'' +
+                ", rating=" + rating +
+                ", genre=" + genre +
                 '}';
     }
 }
