@@ -4,6 +4,8 @@ import movies.moviedemo.enums.Genre;
 import movies.moviedemo.enums.Rating;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -22,7 +24,18 @@ public class Movie {
     private Rating rating;
     private Genre genre;
 
+    @ManyToOne
+    private Accounts accounts;
+
     public Movie() { }
+
+    public Accounts getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Accounts accounts) {
+        this.accounts = accounts;
+    }
 
     public Long getId() {
         return id;
@@ -108,6 +121,7 @@ public class Movie {
                 ", duration=" + duration +
                 ", rating=" + rating +
                 ", genre=" + genre +
+                ", accounts=" + accounts +
                 '}';
     }
 }

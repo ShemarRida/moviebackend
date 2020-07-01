@@ -2,6 +2,9 @@ package movies.moviedemo.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Accounts {
@@ -15,7 +18,18 @@ public class Accounts {
     private String password;
     private Boolean staySignedIn;
 
+    @OneToMany
+    private List<Movie> movies;
+
     public Accounts(){ }
+
+    public List<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
 
     public Long getUserId() {
         return userId;
@@ -74,6 +88,7 @@ public class Accounts {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", staySignedIn=" + staySignedIn +
+                ", movies=" + movies +
                 '}';
     }
 }
