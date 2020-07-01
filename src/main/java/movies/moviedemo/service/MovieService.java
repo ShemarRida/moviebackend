@@ -1,7 +1,7 @@
 package movies.moviedemo.service;
 
 import movies.moviedemo.domain.Movie;
-import movies.moviedemo.exception.ResourceNotFoundException;
+import movies.moviedemo.exceptions.ResourceNotFoundException;
 import movies.moviedemo.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

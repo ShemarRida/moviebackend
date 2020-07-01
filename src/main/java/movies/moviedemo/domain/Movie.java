@@ -5,6 +5,7 @@ import movies.moviedemo.enums.Rating;
 
 import javax.persistence.*;
 
+
 @Entity
 public class Movie {
     @Id
@@ -14,12 +15,12 @@ public class Movie {
     private String description;
     private Boolean recommended;
     private String cast;
+    private String release_date;
+    private Integer duration;
 
     @Enumerated(EnumType.STRING)
     private Rating rating;
     private Genre genre;
-
-//    private Double score_average;
 
     public Movie() { }
 
@@ -63,6 +64,22 @@ public class Movie {
         this.cast = cast;
     }
 
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public Integer getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Integer duration) {
+        this.duration = duration;
+    }
+
     public Rating getRating() {
         return rating;
     }
@@ -87,6 +104,8 @@ public class Movie {
                 ", description='" + description + '\'' +
                 ", recommended=" + recommended +
                 ", cast='" + cast + '\'' +
+                ", release_date='" + release_date + '\'' +
+                ", duration=" + duration +
                 ", rating=" + rating +
                 ", genre=" + genre +
                 '}';
