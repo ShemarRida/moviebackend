@@ -43,22 +43,31 @@ public class MovieController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/movies")
-    public List<Movie> getAllMovies(){
-        return movieService.getAllMovies();
+    public ResponseEntity<Iterable<Movie>> getAllMovies(){
+        Iterable<Movie> movies = movieService.getAllMovies();
+        SuccessfulResponseDetail successfulResponseDetail = new SuccessfulResponseDetail(HttpStatus.OK.value(), "Success", movies);
+        return new ResponseEntity(successfulResponseDetail, HttpStatus.OK);
+
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/movies/{movieId}" )
-    public Optional<Movie> getMovieById(@PathVariable Long movieId){
-         return movieService.getMovieById(movieId);
+    public ResponseEntity<Optional<Movie>> getMovieById(@PathVariable Long movieId){
+        Optional<Movie> movies = movieService.getMovieById(movieId);
+        SuccessfulResponseDetail successfulResponseDetail = new SuccessfulResponseDetail(HttpStatus.OK.value(), "Success", movies);
+        return new ResponseEntity(successfulResponseDetail, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/movies/{movieId}")
-    public void updateMovie(@RequestBody Movie movie, @PathVariable Long movieId){
+    public ResponseEntity<?> updateMovie(@RequestBody Movie movie, @PathVariable Long movieId){
         movieService.updateMovie(movie, movieId);
+        SuccessfulResponseDetail successfulResponseDetail = new SuccessfulResponseDetail(HttpStatus.ACCEPTED.value(), "Updated Movie", movie);
+        return new ResponseEntity(successfulResponseDetail, HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/movies/{movieId}")
-    public void deleteMovie(@PathVariable Long movieId){
+    public ResponseEntity<?> deleteMovie(@PathVariable Long movieId){
         movieService.deleteMovieById(movieId);
+        SuccessfulResponseDetail successfulResponseDetail = new SuccessfulResponseDetail(HttpStatus.NO_CONTENT.value(), "Deleted movie", null);
+        return new ResponseEntity(successfulResponseDetail, HttpStatus.NO_CONTENT);
     }
 }
